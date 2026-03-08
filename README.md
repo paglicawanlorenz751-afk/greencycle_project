@@ -1,1 +1,0 @@
-# greencycle_project
