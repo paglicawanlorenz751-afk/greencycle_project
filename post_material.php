@@ -10,8 +10,13 @@ $desc = $_POST['description'];
 $qty = $_POST['quantity'];
 $loc = $_POST['location'];
 
-$sql = "INSERT INTO materials (material_name,description,quantity,location)
-VALUES ('$name','$desc','$qty','$loc')";
+$image = $_FILES['image']['name'];
+$tmp = $_FILES['image']['tmp_name'];
+
+move_uploaded_file($tmp,"uploads/".$image);
+
+$sql = "INSERT INTO materials (material_name,description,quantity,location,image)
+VALUES ('$name','$desc','$qty','$loc','$image')";
 
 $conn->query($sql);
 
@@ -24,7 +29,7 @@ echo "<p>Material posted successfully!</p>";
 
 <h2>Post Material</h2>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
 <input type="text" name="name" placeholder="Material Name" required>
 
@@ -33,6 +38,8 @@ echo "<p>Material posted successfully!</p>";
 <input type="text" name="quantity" placeholder="Quantity">
 
 <input type="text" name="location" placeholder="Location">
+
+<input type="file" name="image" required>
 
 <button type="submit" name="submit">Post Material</button>
 

@@ -17,6 +17,8 @@ while($row = $result->fetch_assoc()){
 ?>
 
 <div class="material-card">
+    
+    <img src="uploads/<?php echo $row['image']; ?>" class="material-img">
 
 <h3><?php echo $row['material_name']; ?></h3>
 
