@@ -2,9 +2,12 @@
 <html>
 <head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GreenCycle</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/greencycle/CSS/style.css">
 
 </head>
 
@@ -20,7 +23,7 @@ GreenCycle
 <a href="index.php">Home</a>
 <a href="materials.php">Materials</a>
 <a href="login.php">Login</a>
-<a href="register.php">Register</a>
+<a href="register.php" class="register-btn">Register</a>
 </div>
 
 </nav>
