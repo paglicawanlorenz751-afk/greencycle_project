@@ -73,6 +73,18 @@ while($request = $requests->fetch_assoc()){
 
 <p>Status: <?php echo $request['status']; ?></p>
 
+<?php if($request['status'] == 'pending'){ ?>
+
+<a href="approve_request.php?id=<?php echo $request['id']; ?>" class="btn">
+Approve
+</a>
+
+<a href="reject_request.php?id=<?php echo $request['id']; ?>" class="btn" style="background:#c62828;">
+Reject
+</a>
+
+<?php } ?>
+
 </div>
 
 <?php } ?>

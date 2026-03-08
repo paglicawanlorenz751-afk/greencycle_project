@@ -47,9 +47,17 @@ $result = $conn->query($sql);
 
 <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
 
+<<?php if($row['user_id'] != $_SESSION['user_id']){ ?>
+
 <a href="request_material.php?id=<?php echo $row['id']; ?>" class="request-btn">
 Request Material
 </a>
+
+<?php } else { ?>
+
+<p style="color:gray;">Your Post</p>
+
+<?php } ?>
 
 </div>
 
