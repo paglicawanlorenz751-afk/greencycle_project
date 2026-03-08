@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['user_id'])){
+header("Location: login.php");
+exit();
+}
+?>
+
+<?php
+session_start();
 include "includes/db.php";
 include "includes/header.php";
 
@@ -15,8 +24,10 @@ $tmp = $_FILES['image']['tmp_name'];
 
 move_uploaded_file($tmp,"uploads/".$image);
 
-$sql = "INSERT INTO materials (material_name,description,quantity,location,image)
-VALUES ('$name','$desc','$qty','$loc','$image')";
+$user_id = $_SESSION['user_id'];
+
+$sql = "INSERT INTO materials (user_id,material_name,description,quantity,location,image)
+VALUES ('$user_id','$name','$desc','$qty','$loc','$image')";
 
 $conn->query($sql);
 

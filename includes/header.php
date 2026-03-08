@@ -25,6 +25,8 @@ GreenCycle
 <a href="post_material.php">Post Material</a>
 <a href="login.php">Login</a>
 <a href="register.php" class="register-btn">Register</a>
+<a href="dashboard.php">Dashboard</a>
+<a href="logout.php">Logout</a>
 </div>
 
 </nav>
