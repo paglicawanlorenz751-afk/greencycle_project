@@ -31,13 +31,13 @@ $result = $conn->query($sql);
 
 <img src="uploads/<?php echo $material['image']; ?>" class="material-img">
 
-<h3><?php echo $material['material_name']; ?></h3>
+<h3><?php echo $material['material_name']; ?></h3><br>
 
-<p><?php echo $material['description']; ?></p>
+<p><?php echo $material['description']; ?></p><br>
 
-<p><?php echo $material['quantity']; ?></p>
+<p><?php echo $material['quantity']; ?></p><br>
 
-<p><?php echo $material['location']; ?></p>
+<p><?php echo $material['location']; ?></p><br>
 
 </div>
 
