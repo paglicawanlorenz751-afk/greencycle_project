@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GreenCycle</title>
+
 
 <link rel="stylesheet" href="/greencycle/CSS/style.css">
 
@@ -22,8 +22,8 @@
 <div class="nav-container">
 
 <div class="logo-area">
-<img src="images/logo.png" class="logo-img" alt="GreenCycle Logo">
-<span class="logo-text">GreenCycle</span>
+<img src="/greencycle/images/logo.png" class="logo-img" alt="GreenCycle Logo">
+
 </div>
 
 <div class="menu">
