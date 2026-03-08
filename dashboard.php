@@ -15,29 +15,41 @@ $sql = "SELECT * FROM materials WHERE user_id='$user_id'";
 $result = $conn->query($sql);
 ?>
 
-<section class="dashboard">
+<div class="dashboard-container">
 
 <h2>Welcome, <?php echo $_SESSION['business_name']; ?></h2>
 
 <a href="post_material.php" class="btn">Post New Material</a>
 
+<div class="dashboard-section">
+
 <h3>Your Materials</h3>
 
 <div class="materials-grid">
+
+<?php if($result->num_rows == 0){ ?>
+
+<p>No materials posted yet.</p>
+
+<?php } ?>
 
 <?php while($material = $result->fetch_assoc()){ ?>
 
 <div class="material-card">
 
-<img src="uploads/<?php echo $material['image']; ?>" class="material-img">
+<img src="uploads/<?php echo !empty($material['image']) ? $material['image'] : 'default.png'; ?>" class="material-img">
 
-<h3><?php echo $material['material_name']; ?></h3><br>
+<div class="material-info">
 
-<p><?php echo $material['description']; ?></p><br>
+<h3><?php echo $material['material_name']; ?></h3>
 
-<p><?php echo $material['quantity']; ?></p><br>
+<p><?php echo $material['description']; ?></p>
 
-<p><?php echo $material['location']; ?></p><br>
+<p><strong>Quantity:</strong> <?php echo $material['quantity']; ?></p>
+
+<p><strong>Location:</strong> <?php echo $material['location']; ?></p>
+
+</div>
 
 </div>
 
@@ -45,18 +57,13 @@ $result = $conn->query($sql);
 
 </div>
 
+</div>
 
-<h3 style="margin-top:40px;">Material Requests</h3>
+<div class="dashboard-section">
+
+<h3>Material Requests</h3>
 
 <?php
-
-$sql = "SELECT requests.*, materials.material_name
-FROM requests
-JOIN materials ON requests.material_id = materials.id
-WHERE materials.user_id = '$user_id'";
-
-$requests = $conn->query($sql);
-
 while($request = $requests->fetch_assoc()){
 ?>
 
@@ -70,6 +77,6 @@ while($request = $requests->fetch_assoc()){
 
 <?php } ?>
 
-</section>
+</div>
 
-<?php include "includes/footer.php"; ?>
+</div>
