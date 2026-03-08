@@ -19,8 +19,11 @@
 
 <nav class="navbar">
 
-<div class="logo">
-GreenCycle
+<div class="nav-container">
+
+<div class="logo-area">
+<img src="images/logo.png" class="logo-img">
+<span class="logo-text">GreenCycle</span>
 </div>
 
 <div class="menu">
@@ -32,14 +35,16 @@ GreenCycle
 
 <a href="dashboard.php">Dashboard</a>
 <a href="post_material.php">Post Material</a>
-<a href="logout.php">Logout</a>
+<a class="logout-btn" href="logout.php">Logout</a>
 
 <?php } else { ?>
 
 <a href="login.php">Login</a>
-<a href="register.php">Register</a>
+<a class="register-btn" href="register.php">Register</a>
 
 <?php } ?>
+
+</div>
 
 </div>
 
