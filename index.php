@@ -1,19 +1,29 @@
-<!DOCTYPE html>
-<html>
+<?php include "includes/header.php"; ?>
 
-<head>
-<title>GreenCycle</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
+<section class="hero">
 
-<body>
+<h1>Turn Waste Into Resources</h1>
 
-<h1>GreenCycle</h1>
-<p>Turn Waste into Resources</p>
+<p>
+GreenCycle connects businesses that have reusable waste materials
+with others who can use them.
+</p>
 
-<a href="login.php">Login</a>
-<a href="register.php">Register</a>
+<a href="register.php" class="btn">Join Now</a>
 
-</body>
+</section>
 
-</html>
+<section class="about">
+
+<h2>About GreenCycle</h2>
+
+<p>
+GreenCycle is a community platform that helps businesses reduce waste
+by sharing materials that can still be reused. Instead of throwing
+away valuable resources, businesses can exchange them with others
+who need them.
+</p>
+
+</section>
+
+<?php include "includes/footer.php"; ?>
