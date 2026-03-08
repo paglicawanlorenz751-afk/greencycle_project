@@ -22,6 +22,7 @@ GreenCycle
 <div class="menu">
 <a href="index.php">Home</a>
 <a href="materials.php">Materials</a>
+<a href="post_material.php">Post Material</a>
 <a href="login.php">Login</a>
 <a href="register.php" class="register-btn">Register</a>
 </div>

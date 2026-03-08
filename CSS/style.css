@@ -108,4 +108,40 @@ font-size:32px;
 padding:80px 20px;
 }
 
+/* MATERIALS PAGE */
+
+.materials{
+padding:60px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.materials h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+.materials-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.material-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.material-card:hover{
+transform:translateY(-5px);
+}
+
+.material-card h3{
+margin-bottom:10px;
+color:#2e7d32;
+}
+
 }
