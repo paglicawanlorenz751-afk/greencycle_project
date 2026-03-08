@@ -22,8 +22,7 @@
 <div class="nav-container">
 
 <div class="logo-area">
-<img src="/image/logo.png" class="logo-img">
-
+<h1>GreenCycle</h1>
 </div>
 
 <div class="menu">
