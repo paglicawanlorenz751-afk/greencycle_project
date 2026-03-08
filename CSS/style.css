@@ -308,19 +308,37 @@ opacity:0.9;
 
 @media (max-width:768px){
 
+/* NAVBAR MOBILE */
+
 .nav-container{
 flex-direction:column;
-align-items:flex-start;
+align-items:center;
+text-align:center;
+gap:10px;
+}
+
+.logo-area{
+justify-content:center;
 }
 
 .menu{
-margin-top:10px;
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
 }
 
 .menu a{
 display:block;
-margin:5px 0;
+margin:6px 0;
+font-size:16px;
 }
+
+.logout-btn{
+margin-top:8px;
+}
+
+/* HERO */
 
 .hero h1{
 font-size:32px;
@@ -330,6 +348,8 @@ font-size:32px;
 padding:80px 20px;
 }
 
+/* MATERIALS */
+
 .material-img{
 height:160px;
 }
@@ -338,18 +358,12 @@ height:160px;
 padding:20px;
 }
 
-.logo-img{
-width:35px;
-height:35px;
-}
-
-.logo-text{
-font-size:20px;
-}
+/* FOOTER */
 
 .footer-container{
 flex-direction:column;
 text-align:center;
+gap:20px;
 }
 
 .footer-right{
