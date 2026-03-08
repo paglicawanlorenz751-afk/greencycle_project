@@ -207,4 +207,20 @@ border-radius:5px;
 font-weight:bold;
 cursor:pointer;
 }
+
+.request-btn{
+display:inline-block;
+margin-top:10px;
+background:#2e7d32;
+color:white;
+padding:8px 15px;
+text-decoration:none;
+border-radius:5px;
+font-size:14px;
+}
+
+.request-btn:hover{
+background:#1b5e20;
+}
+
 }

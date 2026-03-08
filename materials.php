@@ -28,6 +28,10 @@ while($row = $result->fetch_assoc()){
 
 <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
 
+<a href="request_material.php?id=<?php echo $row['id']; ?>" class="request-btn">
+Request Material
+</a>
+
 </div>
 
 <?php } ?>

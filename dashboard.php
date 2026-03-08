@@ -49,6 +49,30 @@ $result = $conn->query($sql);
 
 </div>
 
+<h3>Material Requests</h3>
+
+<?php
+
+$sql = "SELECT requests.*, materials.material_name
+FROM requests
+JOIN materials ON requests.material_id = materials.id
+WHERE materials.user_id = '$user_id'";
+
+$result = $conn->query($sql);
+
+while($row = $result->fetch_assoc()){
+?>
+
+<div class="request-card">
+
+<p><strong>Material:</strong> <?php echo $row['material_name']; ?></p>
+
+<p>Status: <?php echo $row['status']; ?></p>
+
+</div>
+
+<?php } ?>
+
 <?php } ?>
 
 </div>
