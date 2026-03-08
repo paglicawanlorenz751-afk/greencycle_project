@@ -326,7 +326,7 @@ padding:8px 15px;
 }
 
 .logo-img{
-height:30px;
+height:10px;
 }
 
 .logo-text{
@@ -340,7 +340,7 @@ gap:10px;
 }
 
 .menu a{
-font-size:14px;
+font-size:12px;
 padding:4px 6px;
 }
 
@@ -349,7 +349,7 @@ font-size:28px;
 }
 
 .material-img{
-height:170px;
+height:150px;
 }
 
 }

@@ -9,7 +9,7 @@
 
 
 
-<link rel="stylesheet" href="/greencycle/CSS/style.css?v=7">
+<link rel="stylesheet" href="/greencycle/CSS/style.css?v=8">
 
 </head>
 
@@ -22,7 +22,7 @@
 <div class="nav-container">
 
 <div class="logo-area">
-<img src="/greencycle/image/logo.png" class="logo-img">
+<img src="/image/logo.png" class="logo-img">
 
 </div>
 
