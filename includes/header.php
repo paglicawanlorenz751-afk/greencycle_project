@@ -22,7 +22,7 @@
 <div class="nav-container">
 
 <div class="logo-area">
-<h1>GreenCycle</h1>
+<h1 class="logo-text">GreenCycle</h1>
 </div>
 
 <div class="menu">
