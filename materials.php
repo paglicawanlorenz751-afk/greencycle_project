@@ -2,7 +2,18 @@
 include "includes/db.php";
 include "includes/header.php";
 
-$sql = "SELECT * FROM materials ORDER BY created_at DESC";
+/* SEARCH */
+$search = "";
+
+if(isset($_GET['search'])){
+$search = $_GET['search'];
+}
+
+/* MATERIAL QUERY */
+$sql = "SELECT * FROM materials 
+WHERE material_name LIKE '%$search%' 
+ORDER BY created_at DESC";
+
 $result = $conn->query($sql);
 ?>
 
@@ -10,15 +21,23 @@ $result = $conn->query($sql);
 
 <h2>Available Materials</h2>
 
+<form class="search-bar" method="GET">
+
+<input type="text" name="search" placeholder="Search materials..." value="<?php echo $search; ?>">
+
+<button type="submit">Search</button>
+
+</form>
+
 <div class="materials-grid">
 
-<?php
-while($row = $result->fetch_assoc()){
-?>
+<?php while($row = $result->fetch_assoc()){ ?>
 
 <div class="material-card">
-    
-    <img src="uploads/<?php echo $row['image']; ?>" class="material-img">
+
+<img src="uploads/<?php echo $row['image']; ?>" class="material-img">
+
+<span class="category-tag"><?php echo $row['category']; ?></span>
 
 <h3><?php echo $row['material_name']; ?></h3>
 

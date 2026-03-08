@@ -1,14 +1,5 @@
 <?php
 session_start();
-
-if(!isset($_SESSION['user_id'])){
-header("Location: login.php");
-exit();
-}
-?>
-
-<?php
-session_start();
 include "includes/db.php";
 include "includes/header.php";
 
@@ -19,6 +10,7 @@ exit();
 
 $user_id = $_SESSION['user_id'];
 
+/* USER MATERIALS */
 $sql = "SELECT * FROM materials WHERE user_id='$user_id'";
 $result = $conn->query($sql);
 ?>
@@ -33,23 +25,28 @@ $result = $conn->query($sql);
 
 <div class="materials-grid">
 
-<?php while($row = $result->fetch_assoc()){ ?>
+<?php while($material = $result->fetch_assoc()){ ?>
 
 <div class="material-card">
 
-<img src="uploads/<?php echo $row['image']; ?>" class="material-img">
+<img src="uploads/<?php echo $material['image']; ?>" class="material-img">
 
-<h3><?php echo $row['material_name']; ?></h3>
+<h3><?php echo $material['material_name']; ?></h3>
 
-<p><?php echo $row['description']; ?></p>
+<p><?php echo $material['description']; ?></p>
 
-<p><?php echo $row['quantity']; ?></p>
+<p><?php echo $material['quantity']; ?></p>
 
-<p><?php echo $row['location']; ?></p>
+<p><?php echo $material['location']; ?></p>
 
 </div>
 
-<h3>Material Requests</h3>
+<?php } ?>
+
+</div>
+
+
+<h3 style="margin-top:40px;">Material Requests</h3>
 
 <?php
 
@@ -58,24 +55,20 @@ FROM requests
 JOIN materials ON requests.material_id = materials.id
 WHERE materials.user_id = '$user_id'";
 
-$result = $conn->query($sql);
+$requests = $conn->query($sql);
 
-while($row = $result->fetch_assoc()){
+while($request = $requests->fetch_assoc()){
 ?>
 
 <div class="request-card">
 
-<p><strong>Material:</strong> <?php echo $row['material_name']; ?></p>
+<p><strong>Material:</strong> <?php echo $request['material_name']; ?></p>
 
-<p>Status: <?php echo $row['status']; ?></p>
+<p>Status: <?php echo $request['status']; ?></p>
 
 </div>
 
 <?php } ?>
-
-<?php } ?>
-
-</div>
 
 </section>
 
