@@ -233,13 +233,14 @@ background:#2e7d32;
 color:white;
 padding:40px 20px;
 text-align:center;
-margin-top:auto;
+margin: top 200px;;
 }
 
 .search-bar{
 max-width:500px;
 margin:0 auto 40px auto;
 display:flex;
+border-radius: 5px;
 gap:10px;
 }
 
