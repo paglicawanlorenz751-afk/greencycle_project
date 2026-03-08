@@ -23,12 +23,36 @@ header("Location: dashboard.php");
 exit();
 
 }else{
-echo "Wrong password";
+$error = "Wrong password";
 }
 
 }else{
-echo "User not found";
+$error = "User not found";
 }
 
 }
 ?>
+
+<?php include "includes/header.php"; ?>
+
+<section class="login-container">
+
+<h2>Login</h2>
+
+<?php if(isset($error)){ ?>
+<p style="color:red;"><?php echo $error; ?></p>
+<?php } ?>
+
+<form method="POST">
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<button type="submit" name="login">Login</button>
+
+</form>
+
+</section>
+
+<?php include "includes/footer.php"; ?>
