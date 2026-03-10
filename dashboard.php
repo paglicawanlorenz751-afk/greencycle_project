@@ -1,12 +1,13 @@
 <?php
 session_start();
 include "includes/db.php";
-include "includes/header.php";
 
 if(!isset($_SESSION['user_id'])){
-header("Location: login.php");
-exit();
+    header("Location: login.php");
+    exit();
 }
+
+include "includes/header.php";
 
 $user_id = $_SESSION['user_id'];
 
@@ -64,6 +65,7 @@ $requests = $conn->query($sql);
 <?php } ?>
 
 </div>
+
 </div>
 
 
