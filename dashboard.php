@@ -34,8 +34,6 @@ WHERE materials.user_id='$user_id'
 ORDER BY requests.id DESC";
 
 $requests = $conn->query($sql2);
-
-
 /* =========================
    PURCHASES (BUYER SIDE)
 ========================= */

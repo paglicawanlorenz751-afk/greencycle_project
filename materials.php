@@ -48,23 +48,27 @@ $result = $conn->query($sql);
 
 <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
 
-<?php if($row['status'] != 'sold'){ ?>
+<?php
+if(isset($row['status']) && $row['status'] == 'sold'){
+?>
 
-    <?php if(isset($_SESSION['user_id']) && $row['user_id'] != $_SESSION['user_id']){ ?>
+<p style="color:red;font-weight:bold;">SOLD</p>
 
-        <a href="buy_material.php?id=<?php echo $row['id']; ?>" class="btn">
-        Buy Material
-        </a>
+<?php
+}else{
+?>
 
-    <?php } else { ?>
+<?php if(isset($_SESSION['user_id']) && $row['user_id'] != $_SESSION['user_id']){ ?>
 
-        <p style="color:gray;">Your Post</p>
-
-    <?php } ?>
+<a href="buy_material.php?id=<?php echo $row['id']; ?>" class="btn">
+Buy Material
+</a>
 
 <?php } else { ?>
 
-<p style="color:red;font-weight:bold;">SOLD</p>
+<p style="color:gray;">Your Post</p>
+
+<?php } ?>
 
 <?php } ?>
 
