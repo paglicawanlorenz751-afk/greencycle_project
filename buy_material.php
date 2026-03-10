@@ -16,19 +16,18 @@ $material_id = $_GET['id'];
 
 <h2>Buy Material</h2>
 
-<form action="submit_buy.php" method="POST">
+<form method="POST" action="submit_buy.php">
 
-<input type="hidden" name="material_id" value="<?php echo $material_id; ?>">
+<input type="hidden" name="material_id" value="<?php echo $material['id']; ?>">
 
 <label>Payment Method</label>
 
 <select name="payment_method" required>
-<option value="">Select Payment</option>
-<option value="cash">Cash on Pickup</option>
-<option value="gcash">GCash</option>
+<option value="Cash on Pickup">Cash on Pickup</option>
+<option value="GCash">GCash</option>
 </select>
 
-<button type="submit">Confirm Purchase</button>
+<button type="submit" class="btn">Confirm Purchase</button>
 
 </form>
 
