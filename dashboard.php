@@ -11,19 +11,24 @@ include "includes/header.php";
 
 $user_id = $_SESSION['user_id'];
 
-/* USER MATERIALS */
-$sql = "SELECT * FROM materials WHERE user_id='$user_id'";
+/* =========================
+   USER MATERIALS
+========================= */
+
+$sql = "SELECT * FROM materials WHERE user_id='$user_id' ORDER BY created_at DESC";
 $result = $conn->query($sql);
 
-/* MATERIAL REQUESTS */
-$sql = "SELECT requests.*, materials.material_name, users.business_name
+/* =========================
+   BUY REQUESTS
+========================= */
+
+$sql2 = "SELECT requests.*, materials.material_name
 FROM requests
 JOIN materials ON requests.material_id = materials.id
-JOIN users ON requests.buyer_id = users.id
 WHERE materials.user_id='$user_id'
 ORDER BY requests.id DESC";
 
-$requests = $conn->query($sql);
+$requests = $conn->query($sql2);
 ?>
 
 <div class="dashboard-container">
@@ -32,17 +37,22 @@ $requests = $conn->query($sql);
 
 <a href="post_material.php" class="btn">Post New Material</a>
 
+
+<!-- =========================
+     YOUR MATERIALS
+========================= -->
+
 <div class="dashboard-section">
 
 <h3>Your Materials</h3>
 
 <div class="materials-grid">
 
-<?php if($result->num_rows == 0){ ?>
-<p>No materials posted yet.</p>
-<?php } ?>
+<?php
+if($result && $result->num_rows > 0){
 
-<?php while($material = $result->fetch_assoc()){ ?>
+    while($material = $result->fetch_assoc()){
+?>
 
 <div class="material-card">
 
@@ -62,32 +72,47 @@ $requests = $conn->query($sql);
 
 </div>
 
-<?php } ?>
+<?php
+    }
+
+}else{
+
+echo "<p>No materials posted yet.</p>";
+
+}
+?>
 
 </div>
 
 </div>
 
+
+
+<!-- =========================
+     BUY REQUESTS
+========================= -->
 
 <div class="dashboard-section">
 
 <h3>Material Requests</h3>
 
-<?php if($requests->num_rows == 0){ ?>
-<p>No purchase requests yet.</p>
-<?php } ?>
+<?php
 
-<?php while($request = $requests->fetch_assoc()){ ?>
+if($requests && $requests->num_rows > 0){
+
+while($request = $requests->fetch_assoc()){
+?>
 
 <div class="request-card">
 
 <p><strong>Material:</strong> <?php echo $request['material_name']; ?></p>
 
-<p><strong>Buyer:</strong> <?php echo $request['business_name']; ?></p>
+<p><strong>Buyer ID:</strong> <?php echo $request['buyer_id']; ?></p>
 
 <p><strong>Payment:</strong> <?php echo $request['payment_method']; ?></p>
 
 <p><strong>Status:</strong> <?php echo $request['status']; ?></p>
+
 
 <?php if($request['status'] == 'pending'){ ?>
 
@@ -101,12 +126,22 @@ Reject
 
 <?php } ?>
 
-</div>
-
-<?php } ?>
 
 </div>
 
+<?php
+}
+
+}else{
+
+echo "<p>No purchase requests yet.</p>";
+
+}
+?>
+
 </div>
+
+</div>
+
 
 <?php include "includes/footer.php"; ?>
