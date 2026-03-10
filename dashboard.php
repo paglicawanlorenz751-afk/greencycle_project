@@ -1,4 +1,4 @@
-yes but these second code has the fixxis but it does not show in the web nothing
+
 
 <?php
 session_start();
@@ -23,14 +23,14 @@ $sql = "SELECT * FROM materials
 
 $result = $conn->query($sql);
 
-
 /* =========================
    BUY REQUESTS (SELLER SIDE)
 ========================= */
 
-$sql2 = "SELECT requests.*, materials.material_name, users.username
+$sql2 = "SELECT requests.*, materials.material_name, users.business_name
 FROM requests
 JOIN materials ON requests.material_id = materials.id
+JOIN users ON requests.buyer_id = users.id
 WHERE materials.user_id='$user_id'
 ORDER BY requests.id DESC";
 
@@ -124,7 +124,7 @@ while($request = $requests->fetch_assoc()){
 
 <p><strong>Material:</strong> <?php echo $request['material_name']; ?></p>
 
-<p><strong>Buyer:</strong> <?php echo $request['username']; ?></p>
+<p><strong>Buyer:</strong> <?php echo $request['business_name']; ?>
 
 <p><strong>Payment:</strong> <?php echo $request['payment_method']; ?></p>
 
