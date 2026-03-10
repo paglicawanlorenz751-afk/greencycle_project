@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['material_id']) && isset($_POST['payment_method'])){
 
         $buyer_id = $_SESSION['user_id'];
-        $material_id = $_POST['material_id'];
+        $material_id = intval($_POST['material_id']);
         $payment = $_POST['payment_method'];
 
         $sql = "INSERT INTO requests (material_id, buyer_id, payment_method, status)
