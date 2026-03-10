@@ -7,23 +7,32 @@ if(!isset($_SESSION['user_id'])){
     exit();
 }
 
-$buyer_id = $_SESSION['user_id'];
-$material_id = $_POST['material_id'];
-$payment = $_POST['payment_method'];
+/* CHECK IF FORM WAS SUBMITTED */
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-/* INSERT BUY REQUEST */
+    if(isset($_POST['material_id']) && isset($_POST['payment_method'])){
 
-$sql = "INSERT INTO requests (material_id, buyer_id, payment_method, status)
-        VALUES ('$material_id','$buyer_id','$payment','pending')";
+        $buyer_id = $_SESSION['user_id'];
+        $material_id = $_POST['material_id'];
+        $payment = $_POST['payment_method'];
 
-if($conn->query($sql) === TRUE){
+        $sql = "INSERT INTO requests (material_id, buyer_id, payment_method, status)
+                VALUES ('$material_id','$buyer_id','$payment','pending')";
 
-    header("Location: materials.php");
-    exit();
+        if($conn->query($sql) === TRUE){
+
+            header("Location: materials.php");
+            exit();
+
+        }else{
+            echo "SQL ERROR: " . $conn->error;
+        }
+
+    }else{
+        echo "Missing form data.";
+    }
 
 }else{
-
-    echo "SQL ERROR: " . $conn->error;
-
+    echo "Invalid request.";
 }
 ?>
