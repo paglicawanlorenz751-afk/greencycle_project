@@ -13,6 +13,16 @@ $user_id = $_SESSION['user_id'];
 /* USER MATERIALS */
 $sql = "SELECT * FROM materials WHERE user_id='$user_id'";
 $result = $conn->query($sql);
+
+/* MATERIAL REQUESTS */
+$sql = "SELECT requests.*, materials.material_name, users.business_name
+FROM requests
+JOIN materials ON requests.material_id = materials.id
+JOIN users ON requests.buyer_id = users.id
+WHERE materials.user_id='$user_id'
+ORDER BY requests.id DESC";
+
+$requests = $conn->query($sql);
 ?>
 
 <div class="dashboard-container">
@@ -28,9 +38,7 @@ $result = $conn->query($sql);
 <div class="materials-grid">
 
 <?php if($result->num_rows == 0){ ?>
-
 <p>No materials posted yet.</p>
-
 <?php } ?>
 
 <?php while($material = $result->fetch_assoc()){ ?>
@@ -56,29 +64,33 @@ $result = $conn->query($sql);
 <?php } ?>
 
 </div>
-
 </div>
+
 
 <div class="dashboard-section">
 
 <h3>Material Requests</h3>
 
-<?php
-while($request = $requests->fetch_assoc()){
-?>
+<?php if($requests->num_rows == 0){ ?>
+<p>No purchase requests yet.</p>
+<?php } ?>
+
+<?php while($request = $requests->fetch_assoc()){ ?>
 
 <div class="request-card">
 
 <p><strong>Material:</strong> <?php echo $request['material_name']; ?></p>
-<p><strong>Buyer:</strong> <?php echo $request['buyer_id']; ?></p>
+
+<p><strong>Buyer:</strong> <?php echo $request['business_name']; ?></p>
+
 <p><strong>Payment:</strong> <?php echo $request['payment_method']; ?></p>
 
-<p>Status: <?php echo $request['status']; ?></p>
+<p><strong>Status:</strong> <?php echo $request['status']; ?></p>
 
 <?php if($request['status'] == 'pending'){ ?>
 
 <a href="approve_request.php?id=<?php echo $request['id']; ?>" class="btn">
-Approve
+Accept Buyer
 </a>
 
 <a href="reject_request.php?id=<?php echo $request['id']; ?>" class="btn" style="background:#c62828;">
@@ -94,3 +106,5 @@ Reject
 </div>
 
 </div>
+
+<?php include "includes/footer.php"; ?>
