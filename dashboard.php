@@ -29,7 +29,7 @@ $result = $conn->query($sql);
 $sql2 = "SELECT requests.*, materials.material_name, users.username
 FROM requests
 JOIN materials ON requests.material_id = materials.id
-JOIN users ON requests.buyer_id = users.id
+JOIN users ON requests.buyer_id = users.user_id
 WHERE materials.user_id='$user_id'
 ORDER BY requests.id DESC";
 
