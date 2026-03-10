@@ -12,14 +12,18 @@ include "includes/header.php";
 $user_id = $_SESSION['user_id'];
 
 /* =========================
-   USER MATERIALS
+   USER MATERIALS (SELLING)
 ========================= */
 
-$sql = "SELECT * FROM materials WHERE user_id='$user_id' ORDER BY created_at DESC";
+$sql = "SELECT * FROM materials 
+        WHERE user_id='$user_id' 
+        ORDER BY created_at DESC";
+
 $result = $conn->query($sql);
 
+
 /* =========================
-   BUY REQUESTS
+   BUY REQUESTS (SELLER SIDE)
 ========================= */
 
 $sql2 = "SELECT requests.*, materials.material_name
@@ -29,6 +33,19 @@ WHERE materials.user_id='$user_id'
 ORDER BY requests.id DESC";
 
 $requests = $conn->query($sql2);
+
+
+/* =========================
+   PURCHASES (BUYER SIDE)
+========================= */
+
+$sql3 = "SELECT requests.*, materials.material_name
+FROM requests
+JOIN materials ON requests.material_id = materials.id
+WHERE requests.buyer_id='$user_id'
+ORDER BY requests.id DESC";
+
+$purchases = $conn->query($sql3);
 ?>
 
 <div class="dashboard-container">
@@ -89,7 +106,7 @@ echo "<p>No materials posted yet.</p>";
 
 
 <!-- =========================
-     BUY REQUESTS
+     BUY REQUESTS (SELLER)
 ========================= -->
 
 <div class="dashboard-section">
@@ -135,6 +152,45 @@ Reject
 }else{
 
 echo "<p>No purchase requests yet.</p>";
+
+}
+?>
+
+</div>
+
+
+
+<!-- =========================
+     YOUR PURCHASES (BUYER)
+========================= -->
+
+<div class="dashboard-section">
+
+<h3>Your Purchases</h3>
+
+<?php
+
+if($purchases && $purchases->num_rows > 0){
+
+while($purchase = $purchases->fetch_assoc()){
+?>
+
+<div class="request-card">
+
+<p><strong>Material:</strong> <?php echo $purchase['material_name']; ?></p>
+
+<p><strong>Payment:</strong> <?php echo $purchase['payment_method']; ?></p>
+
+<p><strong>Status:</strong> <?php echo $purchase['status']; ?></p>
+
+</div>
+
+<?php
+}
+
+}else{
+
+echo "<p>You have not purchased any materials yet.</p>";
 
 }
 ?>
