@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "includes/db.php";
 include "includes/header.php";
 
@@ -47,15 +48,23 @@ $result = $conn->query($sql);
 
 <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
 
-<<?php if($row['user_id'] != $_SESSION['user_id']){ ?>
+<?php if($row['status'] != 'sold'){ ?>
 
-<a href="request_material.php?id=<?php echo $row['id']; ?>" class="request-btn">
-Request Material
-</a>
+    <?php if(isset($_SESSION['user_id']) && $row['user_id'] != $_SESSION['user_id']){ ?>
+
+        <a href="buy_material.php?id=<?php echo $row['id']; ?>" class="btn">
+        Buy Material
+        </a>
+
+    <?php } else { ?>
+
+        <p style="color:gray;">Your Post</p>
+
+    <?php } ?>
 
 <?php } else { ?>
 
-<p style="color:gray;">Your Post</p>
+<p style="color:red;font-weight:bold;">SOLD</p>
 
 <?php } ?>
 

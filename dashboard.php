@@ -70,6 +70,8 @@ while($request = $requests->fetch_assoc()){
 <div class="request-card">
 
 <p><strong>Material:</strong> <?php echo $request['material_name']; ?></p>
+<p><strong>Buyer:</strong> <?php echo $request['buyer_id']; ?></p>
+<p><strong>Payment:</strong> <?php echo $request['payment_method']; ?></p>
 
 <p>Status: <?php echo $request['status']; ?></p>
 
